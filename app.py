@@ -190,6 +190,14 @@ def policy_reinsurance():
     cur.close()
     return render_template('policy_reinsurance.html',policy_reinsurances=data)
 
+@app.route('/reinsurance_contracts')
+def reinsurance_contracts():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT contract_id, reinsurer_name, contract_start_date, contract_end_date, contract_amount FROM Reinsurance_Contracts')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('reinsurance_contracts.html',reinsurance_contracts=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
