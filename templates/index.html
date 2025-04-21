@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome to Insurance Database</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Insurance Database</h1>
+    <p class="welcome-text">
+        Explore the different tables in our insurance database. Click any table below to view its detailed data.
+    </p>
+    <ul class="table-list">
+        {% for table in tables %}
+        <li><a href="{{ table }}.html">{{ table.replace('_', ' ') }}</a></li>
+        {% endfor %}
+    </ul>
+    <footer>
+        &copy; {{ current_year }} Insurance Database App
+    </footer>
+</body>
+</html>
