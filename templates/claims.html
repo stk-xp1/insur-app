@@ -22,12 +22,12 @@
         <tbody>
             {% for claim in claims %}
             <tr>
-                <td data-label="Payment ID">{{ claim[0] }}</td>
-                <td data-label="Customer ID">{{ claim[1] }}</td>
-                <td data-label="Payment date">{{ claim[2] }}</td>
-                <td data-label="Amount">{{ claim[3] }}</td>
-                <td data-label="Payment method">{{ claim[4] }}</td>
-                <td data-label="Payment method">{{ claim[5] }}</td>
+                <td data-label="Claim ID">{{ claim[0] }}</td>
+                <td data-label="Policy ID">{{ claim[1] }}</td>
+                <td data-label="Claim Type">{{ claim[2] }}</td>
+                <td data-label="AClaim Data">{{ claim[3] }}</td>
+                <td data-label="Claim Amount">{{ claim[4] }}</td>
+                <td data-label="Clain Status">{{ claim[5] }}</td>
             </tr>
             {% endfor %}
         </tbody>
