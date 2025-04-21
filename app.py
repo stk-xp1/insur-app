@@ -134,6 +134,14 @@ def claims_adjusters():
     cur.close()
     return render_template('claims_adjusters.html',claims_adjusters=data)
 
+@app.route('/customer_payments')
+def customer_payments():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT payment_id, customer_id, payment_date, amount, payment_method FROM  Customer_Payments')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('customer_payments.html',customer_payments=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
