@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request, redirect, flash, url_for
 from flask_mysqldb import MySQL
 
 
@@ -205,6 +205,46 @@ def renters_policies():
     data = cur.fetchall()
     cur.close()
     return render_template('renters_policies.html',renters_policies=data)
+
+#----------------------------------------------------------------------------------------------------------------------------------------
+#  Insert, Update, Delete Sections
+#----------------------------------------------------------------------------------------------------------------------------------------
+
+@app.route('/insert_customer', methods=['GET', 'POST'])
+def insert_customer():
+    if request.method == 'POST':
+        customer_id = request.form.get('customer_id')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        gender = request.form.get('gender')
+        dob = request.form.get('dob')  # Format: YYYY-MM-DD
+        address = request.form.get('address')
+        city = request.form.get('city')
+        state = request.form.get('state')
+        zip_code = request.form.get('zip')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+
+        if not (customer_id and first_name and last_name):
+            flash('Customer ID, First Name and Last Name are required.')
+            return redirect(url_for('insert_customer'))
+        try:
+            cur = mysql.connection.cursor()
+            query = """
+                INSERT INTO Customers (customer_id, first_name, last_name, gender, dob, address, city, state, zip, phone, email)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """
+            cur.execute(query,(customer_id, first_name, last_name, gender, dob, address, city, state, zip_code, phone, email))
+            mysql.connection.commit()
+            cur.close()
+            flash('New customer inserted successfully!', 'success')
+            return redirect(url_for('index'))
+        except Exception as e:
+            flash(f'Error inserting customer: {e}', 'error')
+            return redirect(url_for( 'insert_customer'))
+    return render_template('insert_customer.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
