@@ -150,6 +150,14 @@ def homeowners_policies():
     cur.close()
     return render_template('homeowners_policies.html',homeowners_policies=data)
 
+@app.route('/life_insurance_policies')
+def life_insurance_policies():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT life_policy_id, policy_id, premium_amount, benefit_amount, beneficiary FROM Life_Insurance_Policies')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('life_insurance_policies.html',life_insurance_policies=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
