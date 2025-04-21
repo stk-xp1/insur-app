@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claim Adjuster</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Claims Adjuster List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Adjuster ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for claims_adjuster in claims_adjusters %}
+            <tr>
+                <td data-label="claims_adjuster ID">{{ claims_adjuster[0] }}</td>
+                <td data-label="Adjuster ID">{{ claims_adjuster[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
