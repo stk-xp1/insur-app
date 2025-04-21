@@ -158,6 +158,14 @@ def life_insurance_policies():
     cur.close()
     return render_template('life_insurance_policies.html',life_insurance_policies=data)
 
+@app.route('/payments')
+def payments():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT payment_id, policy_id, payment_date, amount_paid, payment_method FROM Payments')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('payments.html',payments=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
