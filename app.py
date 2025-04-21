@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from flask_mysqldb import MySQL 
+from flask_mysqldb import MySQL
 
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ app.config['MYSQL_DB'] = 'insurance'
 mysql = MySQL(app)
 
 @app.route('/customers')
-def index():
+def customers():
     cur = mysql.connection.cursor()
     cur.execute('SELECT customer_id, first_name, last_name, gender, dob, address, city, state, zip, phone, email FROM Customers ')
     data = cur.fetchall()
