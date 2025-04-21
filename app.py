@@ -126,6 +126,14 @@ def claim_status_reasons():
     cur.close()
     return render_template('claim_status_reasons.html', sclaim_status_reasons=data)
 
+@app.route('/claims_adjusters')
+def claims_adjusters():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT claim_id, adjuster_id FROM Claims_Adjusters ')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('claims_adjusters.html',claims_adjusters=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
