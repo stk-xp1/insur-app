@@ -166,6 +166,14 @@ def payments():
     cur.close()
     return render_template('payments.html',payments=data)
 
+@app.route('/policy_agents')
+def policy_agents():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT policy_id, agent_id FROM Policy_Agents')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('policy_agents.html',policy_agents=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
