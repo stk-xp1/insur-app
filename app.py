@@ -43,6 +43,14 @@ def policies():
     cur.close()
     return render_template('policies.html', policies=data)
 
+@app.route('/agents')
+def agents():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT agent_id, first_name, last_name, phone, email, address FROM Agents')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('agents.html', agents=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
