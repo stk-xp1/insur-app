@@ -118,6 +118,14 @@ def claim_status_history():
     cur.close()
     return render_template('claim_status_history.html', claim_status_historys=data)
 
+@app.route('/claim_status_reasons')
+def claim_status_reasons():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT reason_id, reason_description FROM Claim_Status_Reasons')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('claim_status_reasons.html', sclaim_status_reasons=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
