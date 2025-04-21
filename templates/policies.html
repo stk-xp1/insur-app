@@ -23,13 +23,13 @@
         <tbody>
             {% for policie in policies %}
             <tr>
-                <td data-label="Payment ID">{{ policie[0] }}</td>
+                <td data-label="Policy ID">{{ policie[0] }}</td>
                 <td data-label="Customer ID">{{ policie[1] }}</td>
-                <td data-label="Payment date">{{ policie[2] }}</td>
-                <td data-label="Amount">{{ policie[3] }}</td>
-                <td data-label="Payment method">{{ policie[4] }}</td>
-                <td data-label="Payment method">{{ policie[5] }}</td>
-                <td data-label="Payment method">{{ policie[6] }}</td>
+                <td data-label="Policy Type">{{ policie[2] }}</td>
+                <td data-label="Start Date">{{ policie[3] }}</td>
+                <td data-label="End Date">{{ policie[4] }}</td>
+                <td data-label="Premium Amount">{{ policie[5] }}</td>
+                <td data-label="Status">{{ policie[6] }}</td>
             </tr>
             {% endfor %}
         </tbody>
