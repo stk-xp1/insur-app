@@ -11,6 +11,33 @@ app.config['MYSQL_DB'] = 'insurance'
 
 mysql = MySQL(app)
 
+@app.route('/')
+def index():
+    tables = [
+        "Adjusters",
+        "Agents",
+        "Auto_Policies",
+        "Beneficiaries",
+        "Claim_Investigations",
+        "Claim_Status_History",
+        "Claim_Status_Reasons",
+        "Claims",
+        "Claims_Adjusters",
+        "Customer_Payments",
+        "Customers",
+        "Homeowners_Policies",
+        "Life_Insurance_Policies",
+        "Payments",
+        "Policies",
+        "Policy_Agents",
+        "Policy_Coverages",
+        "Policy_Reinsurance",
+        "Reinsurance_Contracts",
+        "Renters_Policies"
+    ]
+    return render_template('index.html', tables=tables)
+
+
 @app.route('/customers')
 def customers():
     cur = mysql.connection.cursor()
