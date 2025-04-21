@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renters Policies</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Renters Policies</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rentesr Policy ID</th>
+                <th>Policy ID</th>
+                <th>Liability Amount</th>
+                <th>Property Damage Amount</th>
+                <th>Premium</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for renters_policie in renters_policies %}
+            <tr>
+                <td data-label="renters_policie ID">{{ renters_policie[0] }}</td>
+                <td data-label="Policy ID">{{ renters_policie[1] }}</td>
+                <td data-label="renters_policie Type">{{ renters_policie[2] }}</td>
+                <td data-label="Arenters_policie Data">{{ renters_policie[3] }}</td>
+                <td data-label="renters_policie Amount">{{ renters_policie[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
