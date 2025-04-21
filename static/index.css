@@ -63,6 +63,104 @@ footer {
     text-align: center;
     width: 100%;
 }
+
+/* Insert Button Styles */
+.button-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.insert-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #007BFF;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+.insert-button:hover {
+    background-color: #0056b3;
+}
+
+/* Insert Form Styles */
+form {
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin: 40px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+form h2 {
+    margin-bottom: 20px;
+    color: #0047b3;
+}
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #0047b3;
+}
+input, select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+button {
+    background-color: #007BFF;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.message {
+    max-width: 600px;
+    margin: 20px auto;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+}
+.error {
+    background-color: #f8d7da;
+    color: #842029;
+}
+.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+a.back-link {
+    display: block;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    text-decoration: none;
+    color: #0047b3;
+    font-weight: 600;
+}
+a.back-link:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 480px) {
     body {
         margin: 20px;
@@ -70,4 +168,9 @@ footer {
     .table-list {
         grid-template-columns: 1fr;
     }
+    form {
+        margin: 20px 10px;
+        padding: 20px;
+    }
 }
+
