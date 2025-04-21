@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customers List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='claims.css') }}">
+</head>
+<body>
+    <h1>Claims List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Policy ID</th>
+                <th>Claim Type</th>
+                <th>Claim Data</th>
+                <th>Claim Amount</th>
+                <th>Clain Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for claim in claims %}
+            <tr>
+                <td data-label="Payment ID">{{ claim[0] }}</td>
+                <td data-label="Customer ID">{{ claim[1] }}</td>
+                <td data-label="Payment date">{{ claim[2] }}</td>
+                <td data-label="Amount">{{ claim[3] }}</td>
+                <td data-label="Payment method">{{ claim[4] }}</td>
+                <td data-label="Payment method">{{ claim[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customers List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='claims.css') }}">
+</head>
+<body>
+    <h1>Policies</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Policy ID</th>
+                <th>Customer ID</th>
+                <th>Policy Type</th>
+                <th>Start Date</th>
+                <th>End Date </th>
+                <th>Premium Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for policie in policies %}
+            <tr>
+                <td data-label="Payment ID">{{ policie[0] }}</td>
+                <td data-label="Customer ID">{{ policie[1] }}</td>
+                <td data-label="Payment date">{{ policie[2] }}</td>
+                <td data-label="Amount">{{ policie[3] }}</td>
+                <td data-label="Payment method">{{ policie[4] }}</td>
+                <td data-label="Payment method">{{ policie[5] }}</td>
+                <td data-label="Payment method">{{ policie[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
