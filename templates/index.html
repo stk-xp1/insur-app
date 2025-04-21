@@ -13,7 +13,8 @@
     </p>
     <ul class="table-list">
         {% for table in tables %}
-        <li><a href="{{ table }}.html">{{ table.replace('_', ' ') }}</a></li>
+        {% set url_part = table.lower() %}
+        <li><a href="/{{ url_part }}">{{ table.replace('_', ' ') }}</a></li>
         {% endfor %}
     </ul>
     <footer>
