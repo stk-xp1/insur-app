@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Policy Coverages</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Policy Coverages</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Coverages ID</th>
+                <th>Policy ID</th>
+                <th>Coverages Type</th>
+                <th>Coverages Limit</th>
+                <th>Premium</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for policy_coverage in policy_coverages %}
+            <tr>
+                <td data-label="Coverages ID">{{ policy_coverage[0] }}</td>
+                <td data-label="Policy ID">{{ policy_coverage[1] }}</td>
+                <td data-label="Coverages Type">{{ policy_coverage[2] }}</td>
+                <td data-label="Coverages Limit">{{ policy_coverage[3] }}</td>
+                <td data-label="Premium">{{ policy_coverage[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
