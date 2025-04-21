@@ -94,6 +94,14 @@ def auto_policies():
     cur.close()
     return render_template('auto_policies.html', auto_policies=data)
 
+@app.route('/beneficiaries')
+def beneficiaries():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT beneficiary_id, life_policy_id, beneficiary_name, relationship, percentage FROM Beneficiaries')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('beneficiaries.html', beneficiaries=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
