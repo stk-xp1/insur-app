@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Agent List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Agent ID</th>
+                <th>Agent First Name</th>
+                <th>Agent Last Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agent in agents %}
+            <tr>
+                <td data-label="Payment ID">{{ agent[0] }}</td>
+                <td data-label="Customer ID">{{ agent[1] }}</td>
+                <td data-label="Payment date">{{ agent[2] }}</td>
+                <td data-label="Amount">{{ agent[3] }}</td>
+                <td data-label="Payment method">{{ agent[4] }}</td>
+                <td data-label="Payment method">{{ agent[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
