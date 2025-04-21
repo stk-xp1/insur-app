@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beneficiaries</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Beneficiaries</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Beneficiarie ID</th>
+                <th>Life Policy ID</th>
+                <th>Beneficiarie Name</th>
+                <th>Relationship</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for beneficiarie in beneficiaries %}
+            <tr>
+                <td data-label="Beneficiarie ID">{{ beneficiarie[0] }}</td>
+                <td data-label="Life Policy ID">{{ beneficiarie[1] }}</td>
+                <td data-label="Beneficiarie Name">{{ beneficiarie[2] }}</td>
+                <td data-label="Relationship">{{ beneficiarie[3] }}</td>
+                <td data-label="percentage">{{ beneficiarie[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
