@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claim Investigation List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Claims Investigation List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Investigation ID</th>
+                <th>Claims ID</th>
+                <th>Investigator Name</th>
+                <th>Investigation Data</th>
+                <th>Findings</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for claim_investigation in  claim_investigations %}
+            <tr>
+                <td data-label="Investigation ID">{{ claim_investigation[0] }}</td>
+                <td data-label="jD">{{ claim_investigation[1] }}</td>
+                <td data-label="Investigator Name">{{ claim_investigation[2] }}</td>
+                <td data-label="Investigation Data">{{ claim_investigation[3] }}</td>
+                <td data-label="Findings">{{ claim_investigation[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
