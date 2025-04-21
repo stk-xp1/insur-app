@@ -1,1 +1,1 @@
-Training app for insure company
+Training app for insure company with Python Flask
