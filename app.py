@@ -142,6 +142,14 @@ def customer_payments():
     cur.close()
     return render_template('customer_payments.html',customer_payments=data)
 
+@app.route('/homeowners_policies')
+def homeowners_policies():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT homeowners_policy_id, policy_id, liability_amount, property_damage_amount, premium FROM Homeowners_Policies')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('homeowners_policies.html',homeowners_policies=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
