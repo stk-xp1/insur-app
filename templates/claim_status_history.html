@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claim Status</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Claims Status</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Status</th>
+                <th>Reason ID</th>
+                <th>Status Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for claim_status_history in claim_status_historys %}
+            <tr>
+                <td data-label="Claim ID">{{ claim_status_history[0] }}</td>
+                <td data-label="Status">{{ claim_status_history[1] }}</td>
+                <td data-label="Reason ID">{{ claim_status_history[2] }}</td>
+                <td data-label="Status Date">{{ claim_status_history[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
