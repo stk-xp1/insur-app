@@ -198,6 +198,14 @@ def reinsurance_contracts():
     cur.close()
     return render_template('reinsurance_contracts.html',reinsurance_contracts=data)
 
+@app.route('/renters_policies')
+def renters_policies():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT renters_policy_id, policy_id, liability_amount, property_damage_amount, premium FROM Renters_Policies')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('renters_policies.html',renters_policies=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
