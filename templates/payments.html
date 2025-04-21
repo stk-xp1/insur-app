@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payments</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Payment</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>Policy ID</th>
+                <th>Payment Data</th>
+                <th>Amount Paid</th>
+                <th>Payment Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td data-label="Payment ID">{{ payment[0] }}</td>
+                <td data-label="Policy ID">{{ payment[1] }}</td>
+                <td data-label="Payment Data">{{ payment[2] }}</td>
+                <td data-label="Amount Paid">{{ payment[3] }}</td>
+                <td data-label="Payment Method">{{ payment[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
