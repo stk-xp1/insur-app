@@ -16,18 +16,18 @@
                 <th>Agent Last Name</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Address></th>
+                <th>Address</th>
             </tr>
         </thead>
         <tbody>
             {% for agent in agents %}
             <tr>
-                <td data-label="Payment ID">{{ agent[0] }}</td>
-                <td data-label="Customer ID">{{ agent[1] }}</td>
-                <td data-label="Payment date">{{ agent[2] }}</td>
-                <td data-label="Amount">{{ agent[3] }}</td>
-                <td data-label="Payment method">{{ agent[4] }}</td>
-                <td data-label="Payment method">{{ agent[5] }}</td>
+                <td data-label="Agent ID">{{ agent[0] }}</td>
+                <td data-label="Agent First Name">{{ agent[1] }}</td>
+                <td data-label="Agent Last Name">{{ agent[2] }}</td>
+                <td data-label="Phone">{{ agent[3] }}</td>
+                <td data-label="Email">{{ agent[4] }}</td>
+                <td data-label="Address">{{ agent[5] }}</td>
             </tr>
             {% endfor %}
         </tbody>
