@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Auto Policies</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Auto Policy ID</th>
+                <th>Policy ID</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Liability Amount</th>
+                <th>Uninsured Motorist</th>
+                <th>Underinsured Motorist</th>
+                <th>Med Pay</th>
+                <th>Collision Damage</th>
+                <th>Named Insured</th>
+                <th>Additional Driver</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auto_policie in auto_policies %}
+            <tr>
+                <td data-label="Auto Policy ID">{{ auto_policie[0] }}</td>
+                <td data-label="Policy ID">{{ auto_policie[1] }}</td>
+                <td data-label="Make">{{ auto_policie[2] }}</td>
+                <td data-label="Model">{{ auto_policie[3] }}</td>
+                <td data-label="Year">{{ auto_policie[4] }}</td>
+                <td data-label="Liability Amount">{{ auto_policie[5] }}</td>
+                <td data-label="Uninsured Motorist">{{ auto_policie[6] }}</td>
+                <td data-label="Underinsured Motorist">{{ auto_policie[7] }}</td>
+                <td data-label="Med Pay">{{ auto_policie[8] }}</td>
+                <td data-label="Collision Damage">{{ auto_policie[9] }}</td>
+                <td data-label="Named Insured">{{ auto_policie[10] }}</td>
+                <td data-label="Additional Driver">{{ auto_policie[11] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
