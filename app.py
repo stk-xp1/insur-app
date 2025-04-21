@@ -102,6 +102,14 @@ def beneficiaries():
     cur.close()
     return render_template('beneficiaries.html', beneficiaries=data)
 
+@app.route('/claim_investigations')
+def claim_investigations():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT investigation_id, claim_id, investigator_name, investigation_date, findings FROM Claim_Investigations')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('claim_investigations.html', claim_investigations=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
