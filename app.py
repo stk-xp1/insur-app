@@ -174,6 +174,22 @@ def policy_agents():
     cur.close()
     return render_template('policy_agents.html',policy_agents=data)
 
+@app.route('/policy_coverages')
+def policy_coverages():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT coverage_id, policy_id, coverage_type, coverage_limit, premium FROM Policy_Coverages ')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('policy_coverages.html',policy_coverages=data)
+
+@app.route('/policy_reinsurance')
+def policy_reinsurance():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT policy_id, contract_id FROM Policy_Reinsurance')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('policy_reinsurance.html',policy_reinsurances=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
