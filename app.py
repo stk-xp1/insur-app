@@ -86,6 +86,14 @@ def adjusters():
     cur.close()
     return render_template('adjusters.html', adjusters=data)
 
+@app.route('/auto_policies')
+def auto_policies():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT auto_policy_id, policy_id, make, model, year, liability_amount, uninsured_motorist, underinsured_motorist, med_pay, collision_damage, named_insured, additional_driver FROM Auto_Policies')
+    data = cur.fetchall()
+    cur.close()
+    return render_template('auto_policies.html', auto_policies=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
