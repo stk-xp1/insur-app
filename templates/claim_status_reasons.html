@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claim Reason</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Claims Reason</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Reason ID</th>
+                <th>Rreason Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sclaim_status_reason in sclaim_status_reasons %}
+            <tr>
+                <td data-label="sclaim_status_reason ID">{{ sclaim_status_reason[0] }}</td>
+                <td data-label="Policy ID">{{ sclaim_status_reason[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
