@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Insert New Customer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='customers.css') }}">
 </head>
 <body>
     <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Home</a>
@@ -17,7 +17,7 @@
       {% endif %}
     {% endwith %}
 
-    <form method="POST" action="{{ url_for('insert_customer') }}">
+    <form method="POST" action="{{ url_for('insert_table_form',table_name='customers')}}">
         <h2>Insert New Customer</h2>
 
         <label for="customer_id">Customer ID *</label>
