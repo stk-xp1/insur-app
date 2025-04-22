@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, render_template, request, redirect, flash, url_for, abort
 from flask_mysqldb import MySQL
+from insert_logic import InsertLogic
 
 
 app = Flask(__name__)
-
 app.secret_key = 'Kiram0B0kh0r009878!!'
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -12,6 +12,8 @@ app.config['MYSQL_PASSWORD'] = 'Qazwsxedc78!!'
 app.config['MYSQL_DB'] = 'insurance'
 
 mysql = MySQL(app)
+insert_logic = InsertLogic(mysql)
+
 
 tables = [
     "Adjusters",
@@ -216,38 +218,6 @@ def renters_policies():
 #----------------------------------------------------------$
 
 
-def insert_customer_logic():
-    customer_id = request.form.get('customer_id')
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
-    gender = request.form.get('gender')
-    dob = request.form.get('dob')  
-    address = request.form.get('address')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    zip_code = request.form.get('zip')
-    phone = request.form.get('phone')
-    email = request.form.get('email')
-
-    if not (customer_id and first_name and last_name):
-        flash('Customer ID, First Name and Last Name are required.', 'error')
-        return False
-
-    try:
-        cur = mysql.connection.cursor()
-        query = """
-            INSERT INTO Customers (customer_id, first_name, last_name, gender, dob, address, city, state, zip, phone, email)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
-        cur.execute(query, (customer_id, first_name, last_name, gender, dob, address, city, state, zip_code, phone, email))
-        mysql.connection.commit()
-        cur.close()
-        flash('New customer inserted successfully!', 'success')
-        return True
-    except Exception as e:
-        flash(f'Error inserting customer: {e}', 'error')
-        return False
-
 @app.route('/insert_select_table')
 def insert_select_table():
     # Render page to select which table to insert into
@@ -261,20 +231,30 @@ def insert_table_form(table_name):
 
     if table_name == 'customers':
         if request.method == 'POST':
-            success = insert_customer_logic()
+            success = insert_logic.insert_customer_logic()  # Call method using the instance
             if success:
                 return redirect(url_for('index'))
             else:
-                
+                # On failure, re-render the form with flash messages
                 return render_template('insert_customer.html')
         # GET request: render the insert customer form
         return render_template('insert_customer.html')
+
+
+    if table_name == 'policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_policy_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_policy.html')
+        return render_template('insert_policy.html')
 
     # Placeholder for other tables - to be implemented
     return f"Insert form for '{table_name}' not implemented yet.", 501
 
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)
-
