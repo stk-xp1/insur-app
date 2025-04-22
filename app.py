@@ -250,8 +250,37 @@ def insert_table_form(table_name):
                 return render_template('insert_policy.html')
         return render_template('insert_policy.html')
 
+    if table_name == 'payments':
+        if request.method == 'POST':
+            success = insert_logic.insert_payment_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_payment.html')
+        return render_template('insert_payment.html')
+
+    if table_name == 'agents':
+        if request.method == 'POST':
+            success = insert_logic.insert_agent_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_agents.html')
+        return render_template('insert_agents.html')
+
+    if table_name == 'claims':
+        if request.method == 'POST':
+            success = insert_logic.insert_claims_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_claims.html')
+        return render_template('insert_claims.html')
     # Placeholder for other tables - to be implemented
     return f"Insert form for '{table_name}' not implemented yet.", 501
+
+
+
 
 
 
