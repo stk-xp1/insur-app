@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welcome to Insurance Database</title>
+    <title>Insurance Database Dashboard</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Insurance Database</h1>
-    <div class="button-container">
-        <a href="/insert_customer" class="insert-button">Insert New Customer</a>
-    </div>
+    <h1>Insurance Database Dashboard</h1>
+
     <p class="welcome-text">
-        Explore the different tables in our insurance database. Click any table below to view its detailed data.
+        Choose an operation to manage your insurance database.
     </p>
+    <div class="operation-buttons">
+        <a href="/insert_select_table" class="operation-button">Insert Data</a>
+        <a href="/update_select_table" class="operation-button">Update Data</a>
+        <a href="/delete_select_table" class="operation-button">Delete Data</a>
+    </div>
     <ul class="table-list">
         {% for table in tables %}
         {% set url_part = table.lower() %}
@@ -24,4 +27,4 @@
         &copy; {{ current_year }} Insurance Database App
     </footer>
 </body>
-
+</html>
