@@ -1,8 +1,10 @@
-from flask import Flask, jsonify, render_template, request, redirect, flash, url_for
+from flask import Flask, jsonify, render_template, request, redirect, flash, url_for, abort
 from flask_mysqldb import MySQL
 
 
 app = Flask(__name__)
+
+app.secret_key = 'Kiram0B0kh0r009878!!'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'admin'
@@ -11,30 +13,31 @@ app.config['MYSQL_DB'] = 'insurance'
 
 mysql = MySQL(app)
 
+tables = [
+    "Adjusters",
+    "Agents",
+    "Auto_Policies",
+    "Beneficiaries",
+    "Claim_Investigations",
+    "Claim_Status_History",
+    "Claim_Status_Reasons",
+    "Claims",
+    "Claims_Adjusters",
+    "Customer_Payments",
+    "Customers",
+    "Homeowners_Policies",
+    "Life_Insurance_Policies",
+    "Payments",
+    "Policies",
+    "Policy_Agents",
+    "Policy_Coverages",
+    "Policy_Reinsurance",
+    "Reinsurance_Contracts",
+    "Renters_Policies"
+]
+
 @app.route('/')
 def index():
-    tables = [
-        "Adjusters",
-        "Agents",
-        "Auto_Policies",
-        "Beneficiaries",
-        "Claim_Investigations",
-        "Claim_Status_History",
-        "Claim_Status_Reasons",
-        "Claims",
-        "Claims_Adjusters",
-        "Customer_Payments",
-        "Customers",
-        "Homeowners_Policies",
-        "Life_Insurance_Policies",
-        "Payments",
-        "Policies",
-        "Policy_Agents",
-        "Policy_Coverages",
-        "Policy_Reinsurance",
-        "Reinsurance_Contracts",
-        "Renters_Policies"
-    ]
     return render_template('index.html', tables=tables)
 
 
@@ -209,40 +212,66 @@ def renters_policies():
 #----------------------------------------------------------------------------------------------------------------------------------------
 #  Insert, Update, Delete Sections
 #----------------------------------------------------------------------------------------------------------------------------------------
+#  Insert logic for dashboard
+#----------------------------------------------------------$
 
-@app.route('/insert_customer', methods=['GET', 'POST'])
-def insert_customer():
-    if request.method == 'POST':
-        customer_id = request.form.get('customer_id')
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
-        gender = request.form.get('gender')
-        dob = request.form.get('dob')  # Format: YYYY-MM-DD
-        address = request.form.get('address')
-        city = request.form.get('city')
-        state = request.form.get('state')
-        zip_code = request.form.get('zip')
-        phone = request.form.get('phone')
-        email = request.form.get('email')
 
-        if not (customer_id and first_name and last_name):
-            flash('Customer ID, First Name and Last Name are required.')
-            return redirect(url_for('insert_customer'))
-        try:
-            cur = mysql.connection.cursor()
-            query = """
-                INSERT INTO Customers (customer_id, first_name, last_name, gender, dob, address, city, state, zip, phone, email)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """
-            cur.execute(query,(customer_id, first_name, last_name, gender, dob, address, city, state, zip_code, phone, email))
-            mysql.connection.commit()
-            cur.close()
-            flash('New customer inserted successfully!', 'success')
-            return redirect(url_for('index'))
-        except Exception as e:
-            flash(f'Error inserting customer: {e}', 'error')
-            return redirect(url_for( 'insert_customer'))
-    return render_template('insert_customer.html')
+def insert_customer_logic():
+    customer_id = request.form.get('customer_id')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    gender = request.form.get('gender')
+    dob = request.form.get('dob')  
+    address = request.form.get('address')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    zip_code = request.form.get('zip')
+    phone = request.form.get('phone')
+    email = request.form.get('email')
+
+    if not (customer_id and first_name and last_name):
+        flash('Customer ID, First Name and Last Name are required.', 'error')
+        return False
+
+    try:
+        cur = mysql.connection.cursor()
+        query = """
+            INSERT INTO Customers (customer_id, first_name, last_name, gender, dob, address, city, state, zip, phone, email)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        cur.execute(query, (customer_id, first_name, last_name, gender, dob, address, city, state, zip_code, phone, email))
+        mysql.connection.commit()
+        cur.close()
+        flash('New customer inserted successfully!', 'success')
+        return True
+    except Exception as e:
+        flash(f'Error inserting customer: {e}', 'error')
+        return False
+
+@app.route('/insert_select_table')
+def insert_select_table():
+    # Render page to select which table to insert into
+    return render_template('insert_select_table.html', tables=tables)
+
+@app.route('/insert/<table_name>', methods=['GET', 'POST'])
+def insert_table_form(table_name):
+    table_name = table_name.lower()
+    if table_name not in [t.lower() for t in tables]:
+        abort(404)
+
+    if table_name == 'customers':
+        if request.method == 'POST':
+            success = insert_customer_logic()
+            if success:
+                return redirect(url_for('index'))
+            else:
+                
+                return render_template('insert_customer.html')
+        # GET request: render the insert customer form
+        return render_template('insert_customer.html')
+
+    # Placeholder for other tables - to be implemented
+    return f"Insert form for '{table_name}' not implemented yet.", 501
 
 
 
