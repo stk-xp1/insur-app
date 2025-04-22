@@ -1,6 +1,6 @@
 # insert_logic.py
 from flask import flash, request
-from flask_mysqldb import MySQL  # Import MySQL here
+from flask_mysqldb import MySQL
 
 class InsertLogic:
     def __init__(self, mysql):
@@ -11,7 +11,7 @@ class InsertLogic:
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         gender = request.form.get('gender')
-        dob = request.form.get('dob')  # Format: YYYY-MM-DD
+        dob = request.form.get('dob')
         address = request.form.get('address')
         city = request.form.get('city')
         state = request.form.get('state')
@@ -65,4 +65,89 @@ class InsertLogic:
         except Exception as e:
             flash(f'Error inserting policy: {e}', 'error')
             return False
+
+    def insert_payment_logic(self):
+        payment_id = request.form.get('payment_id')
+        policy_id = request.form.get('policy_id')
+        payment_date = request.form.get('payment_date')
+        amount_paid = request.form.get('amount_paid')
+        payment_method = request.form.get('payment_method')
+
+        if not (payment_id and policy_id and amount_paid):
+            flash('payment_id, policy_id, amount_paid are required.', 'error')
+            return False
+
+        try:
+            cur = self.mysql.connection.cursor()
+            query = """
+                INSERT INTO Payments (payment_id, policy_id, payment_date, amount_paid, payment_method)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            cur.execute(query, (payment_id, policy_id, payment_date, amount_paid, payment_method))
+            self.mysql.connection.commit()
+            cur.close()
+            flash('New payment inserted successfully!', 'success')
+            return True
+        except Exception as e:
+            flash(f'Error inserting payment: {e}', 'error')
+            return False
+
+
+    def insert_agent_logic(self):
+        agent_id = request.form.get('agent_id')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+        address = request.form.get('address')
+
+        if not (agent_id and first_name and last_name):
+            flash('agent_id, first_name, last_name are required.', 'error')
+            return False
+
+        try:
+            cur = self.mysql.connection.cursor()
+            query = """
+                INSERT INTO Payments (agent_id, first_name, last_name, phone, email, address)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            cur.execute(query, (agent_id, first_name, last_name, phone, email, address))
+            self.mysql.connection.commit()
+            cur.close()
+            flash('New agent inserted successfully!', 'success')
+            return True
+        except Exception as e:
+            flash(f'Error inserting agent: {e}', 'error')
+            return False
+
+
+    def insert_claims_logic(self):
+        claim_id = request.form.get('claim_id')
+        policy_id = request.form.get('policy_id')
+        claim_type = request.form.get('claim_type')
+        claim_date = request.form.get('claim_date')
+        claim_amount = request.form.get('claim_amount')
+        claim_status = request.form.get('claim_status')
+
+        if not (claim_id and policy_id and claim_type):
+            flash('claim_id, policy_id, claim_type are required.', 'error')
+            return False
+
+        try:
+            cur = self.mysql.connection.cursor()
+            query = """
+                INSERT INTO Payments (claim_id, policy_id, claim_type, claim_date, claim_amount, claim_status)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            cur.execute(query, (claim_id, policy_id, claim_type, claim_date, claim_amount, claim_status))
+            self.mysql.connection.commit()
+            cur.close()
+            flash('New claim inserted successfully!', 'success')
+            return True
+        except Exception as e:
+            flash(f'Error inserting claim: {e}', 'error')
+            return False
+
+
+
 
