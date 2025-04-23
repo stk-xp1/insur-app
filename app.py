@@ -325,9 +325,19 @@ def insert_table_form(table_name):
             else:
                 return render_template('insert_claim_investigations.html')
         return render_template('insert_claim_investigations.html')
-        
+
+    if table_name == 'claim_status_history':
+        if request.method == 'POST':
+            success = insert_logic.insert_claim_status_history_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_claim_status_history.html')
+        return render_template('insert_claim_status_history.html')
     
-    # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations
+    
+    # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations 
+    # claim_status_history
     # Placeholder for other tables - to be implemented
     return f"Insert form for '{table_name}' not implemented yet.", 501
 
