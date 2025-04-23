@@ -149,5 +149,31 @@ class InsertLogic:
             return False
 
 
+    def insert_claims_logic(self):
+        claim_id = request.form.get('claim_id')
+        policy_id = request.form.get('policy_id')
+        claim_type = request.form.get('claim_type')
+        claim_date = request.form.get('claim_date')
+        claim_amount = request.form.get('claim_amount')
+        claim_status = request.form.get('claim_status')
+
+        if not (claim_id and policy_id and claim_type):
+            flash('claim_id, policy_id, claim_type are required.', 'error')
+            return False
+
+        try:
+            cur = self.mysql.connection.cursor()
+            query = """
+                INSERT INTO Payments (claim_id, policy_id, claim_type, claim_date, claim_amount, claim_status)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            cur.execute(query, (claim_id, policy_id, claim_type, claim_date, claim_amount, claim_status))
+            self.mysql.connection.commit()
+            cur.close()
+            flash('New claim inserted successfully!', 'success')
+            return True
+        except Exception as e:
+            flash(f'Error inserting claim: {e}', 'error')
+            return False
 
 
