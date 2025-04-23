@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 from insert_logic import InsertLogic
 
 
-app = Flask(__name__)
+app = Flask(__name__)   
 app.secret_key = 'Kiram0B0kh0r009878!!'
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -276,6 +276,58 @@ def insert_table_form(table_name):
             else:
                 return render_template('insert_claims.html')
         return render_template('insert_claims.html')
+
+    # work from here 
+    if table_name == 'auto_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_auto_policies_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_auto_policies.html')
+        return render_template('insert_auto_policies.html')
+
+
+    if table_name == 'beneficiaries':
+        if request.method == 'POST':
+            success = insert_logic.insert_beneficiaries_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_beneficiaries.html')
+        return render_template('insert_beneficiaries.html')
+
+
+    if table_name == 'claims_Adjusters':
+        if request.method == 'POST':
+            success = insert_logic.insert_claims_Adjusters_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_claims_Adjusters.html')
+        return render_template('insert_claims_Adjusters.html')
+
+
+    if table_name == 'customer_payments':
+        if request.method == 'POST':
+            success = insert_logic.insert_customer_payments_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_customer_payments.html')
+        return render_template('insert_customer_payments.html')
+
+    if table_name == 'claim_investigations':
+        if request.method == 'POST':
+            success = insert_logic.insert_claim_investigations_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_claim_investigations.html')
+        return render_template('insert_claim_investigations.html')
+        
+    
+    # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations
     # Placeholder for other tables - to be implemented
     return f"Insert form for '{table_name}' not implemented yet.", 501
 
