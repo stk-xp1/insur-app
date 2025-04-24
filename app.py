@@ -345,9 +345,48 @@ def insert_table_form(table_name):
                 return render_template('claim_status_reasons.html')
         return render_template('insert_claim_status_reasons.html')
     
+    if table_name == 'homeowners_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_homeowners_policies_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('homeowners_policies.html')
+        return render_template('homeowners_policies.html')
     
-    # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations 
-    # claim_status_history, claim_status_reasons
+
+    if table_name == 'homeowners_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_homeowners_policies_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('homeowners_policies.html')
+        return render_template('homeowners_policies.html')
+    
+
+    if table_name == 'life_lnsurance_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_life_lnsurance_policies_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('life_lnsurance_policies.html')
+        return render_template('life_lnsurance_policies.html')
+    
+
+    if table_name == 'renters_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_renters_policies_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('renters_policies.html')
+        return render_template('renters_policies.html')
+    
+    
+    # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations, renters_policies
+    # claim_status_history, claim_status_reasons, homeowners_policies, life_lnsurance_policies
     # Placeholder for other tables - to be implemented
     return f"Insert form for '{table_name}' not implemented yet.", 501
 
