@@ -58,4 +58,31 @@ tr:hover {
         font-weight: bold;
         content: attr(data-label);
     }
+    /* Add style for back link */
+.back-link {
+    display: block;
+    margin-bottom: 20px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Style for insert link */
+.insert-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #28a745; /* Green */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.insert-link:hover {
+    background-color: #218838;
+}
+
 }
