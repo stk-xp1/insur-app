@@ -12,6 +12,9 @@
     <p class="welcome-text">
         Choose an operation to manage your insurance database.
     </p>
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="{{ url_for('customer_detail_search') }}" class="btn btn-primary">Find Customer Details</a>
+    </div>
     <div class="operation-buttons">
         <a href="/insert_select_table" class="operation-button">Insert Data</a>
         <a href="/update_select_table" class="operation-button">Update Data</a>
