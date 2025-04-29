@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customer Detail - {{ customer.first_name }} {{ customer.last_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('customers') }}" class="back-link">&larr; Back to Customers List</a>
+
+    <h1>Customer Detail</h1>
+    <h2>Personal Info</h2>
+    <ul>
+        <li><strong>ID:</strong> {{ customer.customer_id }}</li>
+        <li><strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</li>
+        <li><strong>Gender:</strong> {{ customer.gender }}</li>
+        <li><strong>Date of Birth:</strong> {{ customer.dob }}</li>
+        <li><strong>Address:</strong> {{ customer.address }}, {{ customer.city }}, {{ customer.state }} {{ customer.zip }}</li>
+        <li><strong>Phone:</strong> {{ customer.phone }}</li>
+        <li><strong>Email:</strong> {{ customer.email }}</li>
+    </ul>
+
+    <h2>Policies</h2>
+    {% if policies %}
+        {% for policy_id, policy in policies.items() %}
+            <div class="policy">
+                <h3>Policy ID: {{ policy_id }} ({{ policy.policy_type }})</h3>
+                <p>Status: {{ policy.policy_status }}</p>
+                <p>Start Date: {{ policy.policy_start_date }} | End Date: {{ policy.policy_end_date }}</p>
+                <p>Premium: {{ policy.premium_amount }}</p>
+
+                <h4>Agents</h4>
+                {% if policy.agents %}
+                    <ul>
+                        {% for agent_id, agent in policy.agents.items() %}
+                            <li>{{ agent.first_name }} {{ agent.last_name }} - Phone: {{ agent.phone }}, Email: {{ agent.email }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No agents assigned.</p>
+                {% endif %}
+
+                <h4>Claims</h4>
+                {% if policy.claims %}
+                    <ul>
+                        {% for claim_id, claim in policy.claims.items() %}
+                            <li>{{ claim.claim_type }} on {{ claim.claim_date }} - Amount: {{ claim.claim_amount }}, Status: {{ claim.claim_status }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No claims.</p>
+                {% endif %}
+
+                <h4>Payments</h4>
+                {% if policy.payments %}
+                    <ul>
+                        {% for payment_id, payment in policy.payments.items() %}
+                            <li>{{ payment.payment_date }} - Amount: {{ payment.amount_paid }}, Method: {{ payment.payment_method }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No payments recorded.</p>
+                {% endif %}
+            </div>
+            <hr/>
+        {% endfor %}
+    {% else %}
+        <p>No policies found for this customer.</p>
+    {% endif %}
+</body>
+</html>
