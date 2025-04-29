@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Find Customer Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Home</a>
+
+    <h2>Find Customer Details</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('customer_detail_search') }}">
+        <label for="customer_id">Enter Customer ID:</label>
+        <input type="text" id="customer_id" name="customer_id" placeholder="e.g. CUST001" required />
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>
