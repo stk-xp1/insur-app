@@ -86,3 +86,166 @@ tr:hover {
 }
 
 }
+
+
+/* default.css */
+
+/* Base styles for body and text */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f4ff 0%, #d9e4ff 100%);
+    color: #333;
+    margin: 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+    color: #0047b3;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Back link styling */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #0047b3;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Messages styling */
+.message {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #842029;
+}
+.message.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+/* Customer info list styling */
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Policy container styling */
+.policy {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+.policy h3 {
+    margin-top: 0;
+}
+
+.policy ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.policy ul li {
+    padding: 4px 0;
+    border-bottom: none;
+}
+
+/* Horizontal rule styling */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 30px 0;
+}
+
+/* Form styling for search page */
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: 600;
+    color: #0047b3;
+}
+
+input[type="text"] {
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    body {
+        margin: 20px;
+    }
+    .policy {
+        max-width: 100%;
+        padding: 15px;
+    }
+    form {
+        max-width: 100%;
+        padding: 20px;
+    }
+    ul {
+        max-width: 100%;
+    }
+}
