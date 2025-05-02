@@ -19,8 +19,8 @@
       {% endif %}
     {% endwith %}
 
-    <form method="POST" action="{{ url_for('customer_detail_search') }}">
-        <label for="customer_id">Enter Customer ID:</label>
+    <form method="POST" action="{{ url_for('customer_detail.customer_detail_search') }}">
+      <label for="customer_id">Enter Customer ID:</label>
         <input type="text" id="customer_id" name="customer_id" placeholder="e.g. CUST001" required />
         <button type="submit">Search</button>
     </form>

@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, render_template, request, redirect, flash, url_for, abort
-from flask_mysqldb import MySQL
 from insert_logic import InsertLogic
 from customer_service import get_customer_detail
+from customer_details_route import customer_bp
+from extensions import mysql
+
+
 
 
 app = Flask(__name__)
@@ -12,8 +15,11 @@ app.config['MYSQL_USER'] = 'admin'
 app.config['MYSQL_PASSWORD'] = 'Qazwsxedc78!!'
 app.config['MYSQL_DB'] = 'insurance'
 
-mysql = MySQL(app)
+mysql.init_app(app)
 insert_logic = InsertLogic(mysql)
+
+app.register_blueprint(customer_bp)
+
 
 
 tables = [
@@ -212,13 +218,6 @@ def renters_policies():
     cur.close()
     return render_template('renters_policies.html',renters_policies=data)
 
-@app.route('/customer_detail/<customer_id>')
-def customer_detail(customer_id):
-    result = get_customer_detail(mysql, customer_id)
-    if result is None:
-        abort(404, description="Customer not found")
-    customer_info, policies = result
-    return render_template('customer_detail.html', customer=customer_info, policies=policies)
 
 #----------------------------------------------------------------------------------------------------------------------------------------
 #  Insert, Update, Delete Sections
@@ -232,19 +231,6 @@ def customer_detail(customer_id):
 @app.route('/dev_info')
 def dev_info():
     return render_template('dev_info.html')
-
-
-
-@app.route('/customer_detail', methods=['GET', 'POST'])
-def customer_detail_search():
-    if request.method == 'POST':
-        customer_id = request.form.get('customer_id')
-        if not customer_id:
-            flash('Please enter a Customer ID.', 'error')
-            return render_template('customer_detail_search.html')
-        # Redirect to the detailed page with customer_id
-        return redirect(url_for('customer_detail', customer_id=customer_id))
-    return render_template('customer_detail_search.html')
 
 
 @app.route('/insert_select_table')
