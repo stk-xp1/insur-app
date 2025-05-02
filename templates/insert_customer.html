@@ -17,7 +17,7 @@
       {% endif %}
     {% endwith %}
 
-    <form method="POST" action="{{ url_for('insert_table_form',table_name='customers')}}">
+    <form method="POST" action="{{ url_for('insert.insert_table_form',table_name='customers')}}">
         <h2>Insert New Customer</h2>
 
         <label for="customer_id">Customer ID *</label>

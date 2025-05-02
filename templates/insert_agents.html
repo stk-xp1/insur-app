@@ -9,7 +9,7 @@
 <body>
     <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Home</a>
 
-    <form method="POST" action="{{ url_for('insert_table_form',table_name='agents')}}">
+    <form method="POST" action="{{ url_for('insert.insert_table_form',table_name='agents')}}">
         <h2>Insert New Agent</h2>
 
         <label for="agent_id">Agent ID *</label>

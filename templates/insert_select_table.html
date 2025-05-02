@@ -15,7 +15,7 @@
         {% for table in tables %}
         {% set url_part = table.lower() %}
         <li>
-            <a href="{{ url_for('insert_table_form', table_name=url_part) }}">{{ table.replace('_', ' ') }}</a>
+            <a href="{{ url_for('insert.insert_table_form', table_name=url_part) }}">{{ table.replace('_', ' ') }}</a>
         </li>
         {% endfor %}
     </ul>

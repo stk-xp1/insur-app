@@ -11,7 +11,7 @@
 
     <h2>Insert New Claims</h2>
 
-    <form method="POST" action="{{ url_for('insert_table_form', table_name='payments') }}">
+    <form method="POST" action="{{ url_for('insert.insert_table_form', table_name='payments') }}">
         <label for="claim_id">Claims ID *</label>
         <input type="text" id="claim_id" name="claim_id" required>
 

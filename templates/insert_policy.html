@@ -11,7 +11,7 @@
 
     <h2>Insert New Policy</h2>
 
-    <form method="POST" action="{{ url_for('insert_table_form', table_name='policies') }}">
+    <form method="POST" action="{{ url_for('insert.insert_table_form', table_name='policies') }}">
         <label for="policy_id">Policy ID *</label>
         <input type="text" id="policy_id" name="policy_id" required>
 

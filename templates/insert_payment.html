@@ -11,7 +11,7 @@
 
     <h2>Insert New Payment</h2>
 
-    <form method="POST" action="{{ url_for('insert_table_form', table_name='payments') }}">
+    <form method="POST" action="{{ url_for('insert.insert_table_form', table_name='payments') }}">
         <label for="policy_id">Payment ID *</label>
         <input type="text" id="policy_id" name="policy_id" required>
 
