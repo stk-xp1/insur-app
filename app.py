@@ -4,7 +4,7 @@ from insert_logic import InsertLogic
 from customer_service import get_customer_detail
 
 
-app = Flask(__name__)   
+app = Flask(__name__)
 app.secret_key = 'Kiram0B0kh0r009878!!'
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -226,6 +226,14 @@ def customer_detail(customer_id):
 #  Insert logic for dashboard
 #----------------------------------------------------------$
 
+#----------------------------------------------------------
+# Dev route
+#----------------------------------------
+@app.route('/dev_info')
+def dev_info():
+    return render_template('dev_info.html')
+
+
 
 @app.route('/customer_detail', methods=['GET', 'POST'])
 def customer_detail_search():
@@ -298,7 +306,7 @@ def insert_table_form(table_name):
                 return render_template('insert_claims.html')
         return render_template('insert_claims.html')
 
-    # work from here 
+    # work from here
     if table_name == 'auto_policies':
         if request.method == 'POST':
             success = insert_logic.insert_auto_policies_logic()  # Call method using the instance
@@ -365,16 +373,6 @@ def insert_table_form(table_name):
             else:
                 return render_template('claim_status_reasons.html')
         return render_template('insert_claim_status_reasons.html')
-    
-    if table_name == 'homeowners_policies':
-        if request.method == 'POST':
-            success = insert_logic.insert_homeowners_policies_logic()  # Call method using the instance
-            if success:
-                return redirect(url_for('index'))
-            else:
-                return render_template('homeowners_policies.html')
-        return render_template('homeowners_policies.html')
-    
 
     if table_name == 'homeowners_policies':
         if request.method == 'POST':
@@ -384,7 +382,17 @@ def insert_table_form(table_name):
             else:
                 return render_template('homeowners_policies.html')
         return render_template('homeowners_policies.html')
-    
+
+
+    if table_name == 'homeowners_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_homeowners_policies_logic()  # Call method using the instance
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('homeowners_policies.html')
+        return render_template('homeowners_policies.html')
+
 
     if table_name == 'life_lnsurance_policies':
         if request.method == 'POST':
@@ -394,7 +402,7 @@ def insert_table_form(table_name):
             else:
                 return render_template('life_lnsurance_policies.html')
         return render_template('life_lnsurance_policies.html')
-    
+
 
     if table_name == 'renters_policies':
         if request.method == 'POST':
@@ -404,8 +412,8 @@ def insert_table_form(table_name):
             else:
                 return render_template('renters_policies.html')
         return render_template('renters_policies.html')
-    
-    
+
+
     # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations, renters_policies
     # claim_status_history, claim_status_reasons, homeowners_policies, life_lnsurance_policies
     # Placeholder for other tables - to be implemented
