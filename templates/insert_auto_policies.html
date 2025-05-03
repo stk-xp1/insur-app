@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Insert Auto Policy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Insert New Auto Policy</h1>
+    <a href="{{ url_for('index') }}" class="back-link">&larr; Back to home</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('insert.insert_table_form', table_name='auto_policies') }}">
+        <label for="auto_policy_id">Auto Policy ID:</label>
+        <input type="text" id="auto_policy_id" name="auto_policy_id" required />
+
+        <label for="policy_id">Policy ID:</label>
+        <input type="text" id="policy_id" name="policy_id" required />
+
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" required />
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required />
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required />
+
+        <label for="liability_amount">Liability Amount:</label>
+        <input type="number" id="liability_amount" name="liability_amount" required />
+
+        <label for="uninsured_motorist">Uninsured Motorist:</label>
+        <input type="number" id="uninsured_motorist" name="uninsured_motorist" required />
+
+        <label for="underinsured_motorist">Underinsured Motorist:</label>
+        <input type="number" id="underinsured_motorist" name="underinsured_motorist" required />
+
+        <label for="med_pay">Med Pay:</label>
+        <input type="number" id="med_pay" name="med_pay" required />
+
+        <label for="collision_damage">Collision Damage:</label>
+        <input type="number" id="collision_damage" name="collision_damage" required />
+
+        <label for="named_insured">Named Insured:</label>
+        <input type="text" id="named_insured" name="named_insured" required />
+
+        <label for="additional_driver">Additional Driver:</label>
+        <input type="text" id="additional_driver" name="additional_driver" required />
+
+        <button type="submit">Insert Auto Policy</button>
+    </form>
+</body>
+</html>

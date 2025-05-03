@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Insert Adjuster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Insert New Adjuster</h1>
+    <a href="{{ url_for('select.adjusters') }}" class="back-link">&larr; Back to Adjusters List</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('insert.insert_table_form', table_name='Adjusters') }}">
+        <label for="adjuster_id">Adjuster ID:</label>
+        <input type="text" id="adjuster_id" name="adjuster_id" placeholder="e.g. ADJ0021" required />
+
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required />
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required />
+
+        <label for="experience_years">Experience (Years):</label>
+        <input type="number" id="experience_years" name="experience_years" min="0" required />
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" placeholder="e.g. 0701234567" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <button type="submit">Insert Adjuster</button>
+    </form>
+</body>
+</html>

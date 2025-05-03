@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Auto Mobil Policies</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+    <title>Auto Policies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
 </head>
 <body>
     <h1>Auto Policies</h1>
+    <a href="{{ url_for('insert.insert_table_form', table_name='auto_policies') }}" class="btn btn-primary">Insert New Auto Policy</a>
     <table>
         <thead>
             <tr>
@@ -26,20 +27,20 @@
             </tr>
         </thead>
         <tbody>
-            {% for auto_policie in auto_policies %}
+            {% for policy in auto_policies %}
             <tr>
-                <td data-label="Auto Policy ID">{{ auto_policie[0] }}</td>
-                <td data-label="Policy ID">{{ auto_policie[1] }}</td>
-                <td data-label="Make">{{ auto_policie[2] }}</td>
-                <td data-label="Model">{{ auto_policie[3] }}</td>
-                <td data-label="Year">{{ auto_policie[4] }}</td>
-                <td data-label="Liability Amount">{{ auto_policie[5] }}</td>
-                <td data-label="Uninsured Motorist">{{ auto_policie[6] }}</td>
-                <td data-label="Underinsured Motorist">{{ auto_policie[7] }}</td>
-                <td data-label="Med Pay">{{ auto_policie[8] }}</td>
-                <td data-label="Collision Damage">{{ auto_policie[9] }}</td>
-                <td data-label="Named Insured">{{ auto_policie[10] }}</td>
-                <td data-label="Additional Driver">{{ auto_policie[11] }}</td>
+                <td>{{ policy[0] }}</td>
+                <td>{{ policy[1] }}</td>
+                <td>{{ policy[2] }}</td>
+                <td>{{ policy[3] }}</td>
+                <td>{{ policy[4] }}</td>
+                <td>{{ policy[5] }}</td>
+                <td>{{ policy[6] }}</td>
+                <td>{{ policy[7] }}</td>
+                <td>{{ policy[8] }}</td>
+                <td>{{ policy[9] }}</td>
+                <td>{{ policy[10] }}</td>
+                <td>{{ policy[11] }}</td>
             </tr>
             {% endfor %}
         </tbody>
