@@ -1,18 +1,20 @@
+import os
 from flask import Flask, render_template
 from insert_routes import insert_bp
 from customer_details_route import customer_bp
 from select_routes import select_bp
 from extensions import mysql
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'Kiram0B0kh0r009878!!'
+app.secret_key = load_dotenv('SECRET_KEY')
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'Qazwsxedc78!!'
-app.config['MYSQL_DB'] = 'insurance'
-
-mysql.init_app(app)
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
 tables = [
     "Adjusters",
