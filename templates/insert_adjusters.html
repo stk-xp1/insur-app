@@ -9,6 +9,8 @@
 <body>
     <h1>Insert New Adjuster</h1>
     <a href="{{ url_for('select.adjusters') }}" class="back-link">&larr; Back to Adjusters List</a>
+    <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Home</a>
+
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}

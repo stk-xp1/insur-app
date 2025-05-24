@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Insert Beneficiary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+</head>
+<body>
+    <h1>Insert New Beneficiary</h1>
+    <a href="{{ url_for('select.beneficiaries') }}" class="back-link">&larr; Back to Beneficiaries List</a>
+    <a href="{{ url_for('index') }}" class="back-link">&larr; Back to Home</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('insert.insert_table_form', table_name='beneficiaries') }}">
+        <label for="beneficiary_id">Beneficiary ID:</label>
+        <input type="text" id="beneficiary_id" name="beneficiary_id" required />
+
+        <label for="life_policy_id">Life Policy ID:</label>
+        <input type="text" id="life_policy_id" name="life_policy_id" required />
+
+        <label for="beneficiary_name">Beneficiary Name:</label>
+        <input type="text" id="beneficiary_name" name="beneficiary_name" required />
+
+        <label for="relationship">Relationship:</label>
+        <input type="text" id="relationship" name="relationship" required />
+
+        <label for="percentage">Percentage:</label>
+        <input type="number" id="percentage" name="percentage" min="0" max="100" required />
+
+        <button type="submit">Insert Beneficiary</button>
+    </form>
+</body>
+</html>

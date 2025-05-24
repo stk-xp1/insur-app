@@ -41,7 +41,7 @@ def insert_table_form(table_name):
 
     if table_name == 'customers':
         if request.method == 'POST':
-            success = insert_logic.insert_customer_logic()  # Call method using the instance
+            success = insert_logic.insert_customer_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -53,7 +53,7 @@ def insert_table_form(table_name):
 
     if table_name == 'policies':
         if request.method == 'POST':
-            success = insert_logic.insert_policy_logic()  # Call method using the instance
+            success = insert_logic.insert_policy_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -62,7 +62,7 @@ def insert_table_form(table_name):
 
     if table_name == 'payments':
         if request.method == 'POST':
-            success = insert_logic.insert_payment_logic()  # Call method using the instance
+            success = insert_logic.insert_payment_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -71,7 +71,7 @@ def insert_table_form(table_name):
 
     if table_name == 'agents':
         if request.method == 'POST':
-            success = insert_logic.insert_agent_logic()  # Call method using the instance
+            success = insert_logic.insert_agent_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -80,7 +80,7 @@ def insert_table_form(table_name):
 
     if table_name == 'claims':
         if request.method == 'POST':
-            success = insert_logic.insert_claims_logic()  # Call method using the instance
+            success = insert_logic.insert_claims_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -90,7 +90,7 @@ def insert_table_form(table_name):
     # work from here
     if table_name == 'auto_policies':
         if request.method == 'POST':
-            success = insert_logic.insert_auto_policies_logic()  # Call method using the instance
+            success = insert_logic.insert_auto_policies_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -100,7 +100,7 @@ def insert_table_form(table_name):
 
     if table_name == 'beneficiaries':
         if request.method == 'POST':
-            success = insert_logic.insert_beneficiaries_logic()  # Call method using the instance
+            success = insert_logic.insert_beneficiaries_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -110,7 +110,7 @@ def insert_table_form(table_name):
 
     if table_name == 'claims_Adjusters':
         if request.method == 'POST':
-            success = insert_logic.insert_claims_Adjusters_logic()  # Call method using the instance
+            success = insert_logic.insert_adjuster_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -120,7 +120,7 @@ def insert_table_form(table_name):
 
     if table_name == 'customer_payments':
         if request.method == 'POST':
-            success = insert_logic.insert_customer_payments_logic()  # Call method using the instance
+            success = insert_logic.insert_customer_payments_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -129,7 +129,7 @@ def insert_table_form(table_name):
 
     if table_name == 'claim_investigations':
         if request.method == 'POST':
-            success = insert_logic.insert_claim_investigations_logic()  # Call method using the instance
+            success = insert_logic.insert_claim_investigations_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -138,7 +138,7 @@ def insert_table_form(table_name):
 
     if table_name == 'claim_status_history':
         if request.method == 'POST':
-            success = insert_logic.insert_claim_status_history_logic()  # Call method using the instance
+            success = insert_logic.insert_claim_status_history_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -148,7 +148,7 @@ def insert_table_form(table_name):
 
     if table_name == 'claim_status_reasons':
         if request.method == 'POST':
-            success = insert_logic.insert_claim_status_reasons_logic()  # Call method using the instance
+            success = insert_logic.insert_claim_status_reasons_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -157,17 +157,7 @@ def insert_table_form(table_name):
 
     if table_name == 'homeowners_policies':
         if request.method == 'POST':
-            success = insert_logic.insert_homeowners_policies_logic()  # Call method using the instance
-            if success:
-                return redirect(url_for('index'))
-            else:
-                return render_template('homeowners_policies.html')
-        return render_template('homeowners_policies.html')
-
-
-    if table_name == 'homeowners_policies':
-        if request.method == 'POST':
-            success = insert_logic.insert_homeowners_policies_logic()  # Call method using the instance
+            success = insert_logic.insert_homeowners_policies_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -177,7 +167,7 @@ def insert_table_form(table_name):
 
     if table_name == 'life_lnsurance_policies':
         if request.method == 'POST':
-            success = insert_logic.insert_life_lnsurance_policies_logic()  # Call method using the instance
+            success = insert_logic.insert_life_lnsurance_policies_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
@@ -187,13 +177,39 @@ def insert_table_form(table_name):
 
     if table_name == 'renters_policies':
         if request.method == 'POST':
-            success = insert_logic.insert_renters_policies_logic()  # Call method using the instance
+            success = insert_logic.insert_renters_policies_logic()  
             if success:
                 return redirect(url_for('index'))
             else:
                 return render_template('renters_policies.html')
         return render_template('renters_policies.html')
 
+    if table_name == 'adjusters':
+        if request.method == 'POST':
+            success = insert_logic.insert_adjuster_logic()  
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_adjusters.html')
+        return render_template('insert_adjusters.html')
+    
+    if table_name == 'auto_policies':
+        if request.method == 'POST':
+            success = insert_logic.insert_auto_policies_logic()  
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_auto_policies.html')
+        return render_template('insert_auto_policies.html')
+    
+    if table_name == 'beneficiaries':
+        if request.method == 'POST':
+            success = insert_logic.insert_beneficiaries_logic()  
+            if success:
+                return redirect(url_for('index'))
+            else:
+                return render_template('insert_beneficiaries.html')
+        return render_template('insert_beneficiaries.html')
 
     # Auto_Policies, Beneficiaries, claims_Adjusters , customer_payments, claim_investigations, renters_policies
     # claim_status_history, claim_status_reasons, homeowners_policies, life_lnsurance_policies

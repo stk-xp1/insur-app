@@ -149,31 +149,110 @@ class InsertLogic:
             return False
 
 
-    def insert_claims_logic(self):
-        claim_id = request.form.get('claim_id')
-        policy_id = request.form.get('policy_id')
-        claim_type = request.form.get('claim_type')
-        claim_date = request.form.get('claim_date')
-        claim_amount = request.form.get('claim_amount')
-        claim_status = request.form.get('claim_status')
+    def insert_adjuster_logic(self):
+        adjuster_id = request.form.get('adjuster_id')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        experience_years = request.form.get('experience_years')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
 
-        if not (claim_id and policy_id and claim_type):
-            flash('claim_id, policy_id, claim_type are required.', 'error')
+        
+        if not (adjuster_id and first_name and last_name and experience_years and phone and email):
+            flash('All fields are required.', 'error')
             return False
 
         try:
             cur = self.mysql.connection.cursor()
             query = """
-                INSERT INTO Payments (claim_id, policy_id, claim_type, claim_date, claim_amount, claim_status)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO Adjusters (adjuster_id, first_name, last_name, experience_years, phone, email)
+                VALUES (%s, %s, %s, %s, %s, %s)
             """
-            cur.execute(query, (claim_id, policy_id, claim_type, claim_date, claim_amount, claim_status))
+            cur.execute(query, (adjuster_id, first_name, last_name, experience_years, phone, email))
             self.mysql.connection.commit()
             cur.close()
-            flash('New claim inserted successfully!', 'success')
+            flash('New adjuster inserted successfully!', 'success')
             return True
         except Exception as e:
-            flash(f'Error inserting claim: {e}', 'error')
+            flash(f'Error inserting adjuster: {e}', 'error')
             return False
+        
+    def insert_auto_policies_logic(self):
+        auto_policy_id = request.form.get('auto_policy_id')
+        policy_id = request.form.get('policy_id')
+        make = request.form.get('make')
+        model = request.form.get('model')
+        year = request.form.get('year')
+        liability_amount = request.form.get('liability_amount')
+        uninsured_motorist = request.form.get('uninsured_motorist')
+        underinsured_motorist = request.form.get('underinsured_motorist')
+        med_pay = request.form.get('med_pay')
+        collision_damage = request.form.get('collision_damage')
+        named_insured = request.form.get('named_insured')
+        additional_driver = request.form.get('additional_driver')
+
+        # Basic validation
+        required_fields = [auto_policy_id, policy_id, make, model, year, liability_amount, uninsured_motorist, underinsured_motorist, med_pay, collision_damage]
+        if not all(required_fields):
+            flash('All fields are required.', 'error')
+            return False
+
+        try:
+            cur = self.mysql.connection.cursor()
+            query = """
+                INSERT INTO Auto_Policies (
+                    auto_policy_id, policy_id, make, model, year, liability_amount,
+                    uninsured_motorist, underinsured_motorist, med_pay, collision_damage,
+                    named_insured, additional_driver
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            cur.execute(query, (
+                auto_policy_id, policy_id, make, model, year, liability_amount,
+                uninsured_motorist, underinsured_motorist, med_pay, collision_damage,
+                named_insured, additional_driver
+            ))
+            self.mysql.connection.commit()
+            cur.close()
+            flash('New auto policy inserted successfully!', 'success')
+            return True
+        except Exception as e:
+            flash(f'Error inserting auto policy: {e}', 'error')
+            return False
+        
+
+    def insert_beneficiaries_logic(self):
+        beneficiary_id = request.form.get('beneficiary_id')
+        life_policy_id = request.form.get('life_policy_id')
+        beneficiary_name = request.form.get('beneficiary_name')
+        relationship = request.form.get('relationship')
+        percentage = request.form.get('percentage')
+    
+        # Basic validation
+        if not (beneficiary_id and life_policy_id and beneficiary_name and relationship and percentage):
+            flash('All fields are required.', 'error')
+            return False
+    
+        try:
+            cur = self.mysql.connection.cursor()
+            query = """
+                INSERT INTO Beneficiaries (
+                    beneficiary_id, life_policy_id, beneficiary_name, relationship, percentage
+                )
+                VALUES (%s, %s, %s, %s, %s)
+            """
+            cur.execute(query, (
+                beneficiary_id, life_policy_id, beneficiary_name, relationship, percentage
+            ))
+            self.mysql.connection.commit()
+            cur.close()
+            flash('New beneficiary inserted successfully!', 'success')
+            return True
+        except Exception as e:
+            flash(f'Error inserting beneficiary: {e}', 'error')
+            return False
+
+
+
 
 
