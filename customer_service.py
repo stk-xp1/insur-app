@@ -1,9 +1,8 @@
-# customer_service.py
 
 def get_customer_detail(mysql, customer_id):
     cur = mysql.connection.cursor()
     query = """
-    SELECT 
+    SELECT
         c.customer_id, c.first_name, c.last_name, c.gender, c.dob, c.address, c.city, c.state, c.zip, c.phone, c.email,
         p.policy_id, p.policy_type, p.policy_start_date, p.policy_end_date, p.premium_amount, p.policy_status,
         a.agent_id, a.first_name AS agent_first_name, a.last_name AS agent_last_name, a.phone AS agent_phone, a.email AS agent_email,
