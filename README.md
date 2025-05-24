@@ -11,7 +11,7 @@ This Flask web app allows viewing and inserting data in an insurance database.
    Download the provided SQL dump file containing the full database schema and data:
 
 
-    insurance_database.sql
+-    insurance_database.sql
 
 2. **Import Database**
 
@@ -53,14 +53,14 @@ Replace `your_username` and `your_database_name` with your MySQL credentials and
 
 1. Install dependencies:
 
-    pip install flask flask-mysqldb
+-    pip install flask flask-mysqldb
 
 
 2. Configure your MySQL connection in `app.py` (if needed) to match your local setup.
 
 3. Run the Flask app:
 
-    python app.py
+-    python app.py
 
 4. Open your browser at `http://127.0.0.1:5000/` to access the app.
 
