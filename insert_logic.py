@@ -157,7 +157,7 @@ class InsertLogic:
         phone = request.form.get('phone')
         email = request.form.get('email')
 
-        
+
         if not (adjuster_id and first_name and last_name and experience_years and phone and email):
             flash('All fields are required.', 'error')
             return False
@@ -176,7 +176,7 @@ class InsertLogic:
         except Exception as e:
             flash(f'Error inserting adjuster: {e}', 'error')
             return False
-        
+
     def insert_auto_policies_logic(self):
         auto_policy_id = request.form.get('auto_policy_id')
         policy_id = request.form.get('policy_id')
@@ -219,7 +219,7 @@ class InsertLogic:
         except Exception as e:
             flash(f'Error inserting auto policy: {e}', 'error')
             return False
-        
+
 
     def insert_beneficiaries_logic(self):
         beneficiary_id = request.form.get('beneficiary_id')
@@ -227,12 +227,12 @@ class InsertLogic:
         beneficiary_name = request.form.get('beneficiary_name')
         relationship = request.form.get('relationship')
         percentage = request.form.get('percentage')
-    
+
         # Basic validation
         if not (beneficiary_id and life_policy_id and beneficiary_name and relationship and percentage):
             flash('All fields are required.', 'error')
             return False
-    
+
         try:
             cur = self.mysql.connection.cursor()
             query = """

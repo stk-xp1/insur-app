@@ -16,6 +16,10 @@ app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
+app.register_blueprint(customer_bp)
+app.register_blueprint(select_bp)
+app.register_blueprint(insert_bp)
+
 tables = [
     "Adjusters",
     "Agents",
@@ -39,9 +43,6 @@ tables = [
     "Renters_Policies"
 ]
 
-app.register_blueprint(customer_bp)
-app.register_blueprint(select_bp)
-app.register_blueprint(insert_bp)
 
 @app.route('/')
 def index():
