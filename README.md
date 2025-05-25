@@ -1,6 +1,7 @@
 # Insurance Management Application
 
-This Flask web app allows viewing and inserting data in an insurance database.
+A Flask-based web application for managing and interacting with an insurance database.  
+This app allows you to view and insert data across multiple insurance-related tables.
 
 ---
 
@@ -51,16 +52,20 @@ Replace `your_username` and `your_database_name` with your MySQL credentials and
 
 ## Running the Application
 
-1. Install dependencies:
+1. **Install dependencies:**
 
--    pip install flask flask-mysqldb
+     pip install flask flask-mysqldb
 
 
-2. Configure your MySQL connection in `app.py` (if needed) to match your local setup.
+2. **Configure your MySQL connection in** `app.py` **(if needed) to match your local setup.**
 
-3. Run the Flask app:
+3. **Run the Flask app:**
 
--    python app.py
+     python app.py
 
-4. Open your browser at `http://127.0.0.1:5000/` to access the app.
+4. **Access the app:** 
 
+Open your browser at `http://127.0.0.1:5000/` to access the app.
+
+
+*This README provides an overview and setup guide for the Insurance Management Flask app.*
