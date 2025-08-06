@@ -1,5 +1,7 @@
 # Insurance Management Application
 
+For learning
+
 A Flask-based web application for managing and interacting with an insurance database.  
 This app allows you to view and insert data across multiple insurance-related tables.
 
